@@ -91,8 +91,30 @@ public class LowestCommonAncestorTEST {
         assertEquals("LCA(8,15)", 1,treeSize15.findLCA(8, 15));
         assertEquals("LCA(8,9)", 4,treeSize15.findLCA(8, 9));
         assertEquals("LCA(9,13)", 1,treeSize15.findLCA(9, 13));
-        assertEquals("LCA(10,11)", 5,treeSize15.findLCA(10, 11));
+        assertEquals("LCA(10,11)", 5,treeSize15.findLCA(10, 11)); 
+	}
+	
+	
+	@Test
+	public void testForNonExitingNodes(){
+		LowestCommonAncestor treeNonExistentNode = new LowestCommonAncestor();
+		treeNonExistentNode.root = new Node(4);
+		treeNonExistentNode.root.left = new Node(8);
+		treeNonExistentNode.root.right = new Node(9);
+		treeNonExistentNode.root.left.left = new Node(12);
+		treeNonExistentNode.root.left.right = new Node(13);
+		treeNonExistentNode.root.right.left = new Node(17);
+        treeNonExistentNode.root.right.right = new Node(21);
         
+        //Check LCA works correctly
+        assertEquals("LCA(12,13)",8,treeNonExistentNode.findLCA(12, 13));
+        assertEquals("LCA(17,21)",9,treeNonExistentNode.findLCA(17, 21));
+        assertEquals("LCA(13,21)",4,treeNonExistentNode.findLCA(13, 21));
+         
+        //Check returns -1 for non existing nodes
+        assertEquals("LCA(13,44)",-1,treeNonExistentNode.findLCA(13, 44));
+        assertEquals("LCA(6,18)",-1,treeNonExistentNode.findLCA(6, 18));
+        assertEquals("LCA(11,23)",-1,treeNonExistentNode.findLCA(11, 23));
 	}
 	
 	
