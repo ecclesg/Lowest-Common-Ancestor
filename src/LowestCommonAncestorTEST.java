@@ -40,6 +40,16 @@ public class LowestCommonAncestorTEST {
 			
 	}
 	
+	@Test
+	public void testForTreeSize1(){
+		LowestCommonAncestor treeSize1 = new LowestCommonAncestor();
+		treeSize1.root = new Node(1);
+		assertEquals("LCA(1,0)",-1,treeSize1.findLCA(1, 0));
+		
+		//Same node in twice then it should be ancestor
+		assertEquals("LCA(1,1)",1,treeSize1.findLCA(1, 1));
+	}
+	
 	
 	
 	
