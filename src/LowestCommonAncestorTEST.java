@@ -68,6 +68,33 @@ public class LowestCommonAncestorTEST {
         assertEquals("LCA(5,6)", 1,treeSize7.findLCA(5, 6));
 	}
 	
+	@Test
+	public void testForTreeSize15(){
+		LowestCommonAncestor treeSize15 = new LowestCommonAncestor();
+		treeSize15.root = new Node(1);
+		treeSize15.root.left = new Node(2);
+		treeSize15.root.right = new Node(3);
+		treeSize15.root.left.left = new Node(4);
+		treeSize15.root.left.right = new Node(5);
+		treeSize15.root.right.left = new Node(6);
+		treeSize15.root.right.right = new Node(7);
+		treeSize15.root.left.left.left = new Node(8);
+		treeSize15.root.left.left.right = new Node(9);
+		treeSize15.root.left.right.left = new Node(10);
+		treeSize15.root.left.right.right = new Node(11);
+		treeSize15.root.right.left.left = new Node(12);
+		treeSize15.root.right.left.right = new Node(13);
+		treeSize15.root.right.right.left = new Node(14);
+		treeSize15.root.right.right.right = new Node(15);
+		
+		assertEquals("LCA(14,15)", 7,treeSize15.findLCA(14, 15));
+        assertEquals("LCA(8,15)", 1,treeSize15.findLCA(8, 15));
+        assertEquals("LCA(8,9)", 4,treeSize15.findLCA(8, 9));
+        assertEquals("LCA(9,13)", 1,treeSize15.findLCA(9, 13));
+        assertEquals("LCA(10,11)", 5,treeSize15.findLCA(10, 11));
+        
+	}
+	
 	
 	
 }
