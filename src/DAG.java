@@ -122,14 +122,11 @@ public class DAG {
 	// prints BFS traversal from a given source s
     void BFS(int s)
     {
-        // Mark all the vertices as not visited(By default
-        // set as false)
+        // Mark all the vertices as not visited(By default set as false)
         boolean visited[] = new boolean[V];
  
-        // Create a queue for BFS
         LinkedList<Integer> queue = new LinkedList<Integer>();
  
-        // Mark the current node as visited and enqueue it
         visited[s]=true;
         queue.add(s);
  
@@ -153,6 +150,16 @@ public class DAG {
                 }
             }
         }
+    }
+    
+    public DAG reverse() {
+        DAG reverse = new DAG(V);
+        for (int v = 0; v < V; v++) {
+            for (int w : adj(v)) {
+                reverse.addEdge(w, v);
+            }
+        }
+        return reverse;
     }
 
 	
