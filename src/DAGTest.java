@@ -55,22 +55,31 @@ public class DAGTest {
 	
 	
 	
-	//Following test check Directed ACYCLIC Graph class works correctly
+	//Following tests check Directed ACYCLIC Graph class works correctly
 	@Test
 	public void testsForCycle(){
-			DAG cyclic = new DAG(5);
+			DAG cyclic = new DAG(20);
 			cyclic.addEdge(0, 1);
 			cyclic.addEdge(1, 2);
 			cyclic.addEdge(2, 0);
+			cyclic.addEdge(2, 3);
+			cyclic.addEdge(3, 4);
+			
+			//Parameter is first vertex
+			cyclic.findCycle(0);
+			
+			//Cycle from 2-0
 			assertTrue(cyclic.hasCycle());
 	}
 	
 	@Test
 	public void testForAcyclicGraph(){
-			DAG acyclic = new DAG(5);
+			DAG acyclic = new DAG(20);
 			acyclic.addEdge(0, 1);
 			acyclic.addEdge(1, 2);
 			acyclic.addEdge(2, 3);
+			//Parameter is first vertex
+			acyclic.findCycle(0);
 			assertFalse(acyclic.hasCycle());
 	}
 
@@ -78,16 +87,26 @@ public class DAGTest {
 	
 	//Following tests check the LCA function for a DAG graph
 	@Test
-	public void testForEmptyTree(){
+	public void testLCA(){
+		DAG lca = new DAG(8);
 		
-	}
-	
-	@Test
-	public void testForTree1Vertex(){
-	}
-	
-	@Test
-	public void testForNonExistingVertices(){
+		//--------2---5----7--
+		//---0--1-------6----8
+		//--------3---4-------
+		lca.addEdge(0, 1);
+		lca.addEdge(1, 2);
+		lca.addEdge(1, 3);
+		lca.addEdge(2, 5);
+		lca.addEdge(3, 4);
+		lca.addEdge(4, 6);
+		lca.addEdge(5, 6);
+		lca.addEdge(6, 8);
+		lca.addEdge(5, 7);
+		lca.addEdge(7, 8);
+		
+		assertEquals("", 1, lca.findLCA(5, 4));
+		assertEquals("", 5, lca.findLCA(7, 8));
+		assertEquals("", 4, lca.findLCA(6, 4));
 	}
 	
 	
