@@ -24,16 +24,31 @@ public class DAGTest {
 		assertEquals("",ans, test.adj(4).toString());
 	}
 	
+	
+	@Test
+	public void testAddEdge(){
+		DAG test4 = new DAG(5);
+		test4.addEdge(3, 9);
+		test4.addEdge(-2, -5);	
+	}
+	
+	@Test
+	public void testinDegree(){
+		DAG test5 = new DAG(5);
+		assertEquals("", -1, test5.indegree(-3));
+	}
+	
+	@Test
+	public void testOutDegree(){
+		DAG test6 = new DAG(5);
+		assertEquals("", -1, test6.outdegree(8));	
+	}
+	
+	
 	@Test(expected=Exception.class)
 	public void exceptionTest(){
 		//Can't make a directed graph with less than 0 vertices
 		DAG test3 = new DAG(-5);
-		
-		//DAG test4 = new DAG(5);
-		//Can't add an edge to a vertices > V(5)
-		//test4.addEdge(3, 9);
-		//test4.addEdge(-2, 3);
-		//test4.addEdge(0, 5);		
 	}
 	
 	

@@ -34,30 +34,43 @@ public class DAG {
 	//Adds a directed edge from v->w
 	public void addEdge(int v, int w)
 	{
-		validateVertex(v);
-	    validateVertex(w);
-	    adj[v].add(w);
-	    indegree[w]++;
-	    E++;
-
+	    if((validateVertex(v)>0)&&(validateVertex(w)>0))
+	    {
+	    	adj[v].add(w);
+	    	indegree[w]++;
+	    	E++;
+	    }
+	    else{
+	    	System.out.println("Please enter vertices between 0 & n-1");
+	    }
+	    	
 	}
 	
-	public void validateVertex(int v) {
+	private int validateVertex(int v) {
         if (v < 0 || v >= V)
-        	throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));    }
+        	return -1;
+        else
+        	return 1;}
 
 	
 	//Returns amount of directed edges incident to vertex v
 	public int indegree(int v) {
-		validateVertex(v);
-        return indegree[v];
-
+		if(validateVertex(v)<0){
+			return -1;
+		}
+		else{
+			return indegree[v];
+		}
 	}
 	
 	//Returns amount of directed edges from vertex v
 	public int outdegree(int v) {
-        validateVertex(v);
-        return adj[v].size();
+		if(validateVertex(v)<0){
+			return -1;
+		}
+		else{
+			return adj[v].size();
+		}
     }
 		
 	
