@@ -8,11 +8,28 @@ public class DAG {
 	private boolean[] marked;		//Boolean List to track visited vertices
 
 	
+	public DAG(int V)
+	{
+		if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+	    this.V = V;
+	    this.E = 0;
+	    indegree = new int[V];
+	    adj = (ArrayList<Integer>[]) new ArrayList[V];
+	    for (int v = 0; v < V; v++) {
+	        adj[v] = new ArrayList<Integer>();
+	    }
+	}
+
 	//Returns current vertex
 	public int V() {
-		return 0;
-		
+		return V;	
 	}
+	
+	public int E() {
+        return E;
+    }
+
+	
 	
 	//Adds a directed edge from v->w
 	public void addEdge(int v, int w)
@@ -25,18 +42,23 @@ public class DAG {
 
 	}
 	
-	private void validateVertex(int v) {
+	public void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
-    }
+        	throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));    }
 
 	
-	//Returns amount of directed edges incident to current vertex
+	//Returns amount of directed edges incident to vertex v
 	public int indegree(int v) {
 		validateVertex(v);
         return indegree[v];
 
 	}
+	
+	//Returns amount of directed edges from vertex v
+	public int outdegree(int v) {
+        validateVertex(v);
+        return adj[v].size();
+    }
 		
 	
 	//Returns the adjacent vertices to v
