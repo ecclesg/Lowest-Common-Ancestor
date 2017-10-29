@@ -115,6 +115,11 @@ public class DAG {
 	    }
 	 
 	public int findLCA(int v, int w){
+		findCycle(0);
+		if(hasCycle){
+			//Graph is not a DAG
+			return -1;
+		}
 		DAG backwards = reverse();
 		ArrayList<Integer> arr1 = backwards.BFS(v);
 		ArrayList<Integer> arr2 = backwards.BFS(w);
