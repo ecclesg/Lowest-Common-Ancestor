@@ -57,10 +57,22 @@ public class DAGTest {
 	
 	//Following test check Directed ACYCLIC Graph class works correctly
 	@Test
-	public void testForDirecedAcyclicGraph(){
-			
+	public void testsForCycle(){
+			DAG cyclic = new DAG(5);
+			cyclic.addEdge(0, 1);
+			cyclic.addEdge(1, 2);
+			cyclic.addEdge(2, 0);
+			assertTrue(cyclic.hasCycle());
 	}
 	
+	@Test
+	public void testForAcyclicGraph(){
+			DAG acyclic = new DAG(5);
+			acyclic.addEdge(0, 1);
+			acyclic.addEdge(1, 2);
+			acyclic.addEdge(2, 3);
+			assertFalse(acyclic.hasCycle());
+	}
 
 	
 	
