@@ -6,6 +6,7 @@ public class DAG {
 	private ArrayList<Integer>[] adj;    // adj[v] = adjacency list for vertex v
 	private int[] indegree;        // indegree[v] = indegree of vertex v
 	private boolean[] marked;		//Boolean List to track visited vertices
+	private boolean hasCycle;		//True if cycle in graph
 
 	
 	public DAG(int V)
@@ -77,6 +78,19 @@ public class DAG {
 	//Returns the adjacent vertices to v
 	public Iterable<Integer> adj(int v)
 	{ return adj[v]; }
+	
+	
+	
+	public boolean hasCycle() {
+		return true;
+    }
+	
+	 public void findCycle(int v) {
+		 
+	 }
+	
+	
+	
 
 	
 }
