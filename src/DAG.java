@@ -115,27 +115,44 @@ public class DAG {
 	    }
 	 
 	public int findLCA(int v, int w){
-		return 0;
+		DAG backwards = reverse();
+		ArrayList<Integer> arr1 = backwards.BFS(v);
+		ArrayList<Integer> arr2 = backwards.BFS(w);
+		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
+		boolean found = false;
+		for(int i = 0; i<arr1.size(); i++){
+				for(int t = 0; t<arr2.size(); t++){				
+					if(arr1.get(i)==arr2.get(t)){
+						commonAncestors.add(i);	
+						found = true;
+					}
+			}
+		}
+		if(found)
+			return commonAncestors.get(0);
+		else
+			return -1;
 	}
 	
 	
 	// prints BFS traversal from a given source s
-    void BFS(int s)
+    public ArrayList<Integer> BFS(int s)
     {
         // Mark all the vertices as not visited(By default set as false)
         boolean visited[] = new boolean[V];
  
         LinkedList<Integer> queue = new LinkedList<Integer>();
+        ArrayList<Integer> order= new ArrayList<Integer>();
  
         visited[s]=true;
         queue.add(s);
+        
  
         while (queue.size() != 0)
         {
             // Dequeue a vertex from queue and print it
-            s = queue.poll();
-            System.out.print(s+" ");
- 
+            s = queue.poll();           
+            order.add(s);
             // Get all adjacent vertices of the dequeued vertex s
             // If a adjacent has not been visited, then mark it
             // visited and enqueue it
@@ -150,6 +167,9 @@ public class DAG {
                 }
             }
         }
+        
+        return order;
+        
     }
     
     public DAG reverse() {
