@@ -5,8 +5,11 @@ public class DAG {
 	private int E;                 // number of edges in this digraph
 	private ArrayList<Integer>[] adj;    // adj[v] = adjacency list for vertex v
 	private int[] indegree;        // indegree[v] = indegree of vertex v
-	private boolean[] marked;		//Boolean List to track visited vertices
+	private boolean marked[];		//Boolean List to track visited vertices
 	private boolean hasCycle;		//True if cycle in graph
+    private boolean stack[];		//Order that vertices were visited
+    
+
 
 	
 	public DAG(int V)
@@ -15,6 +18,8 @@ public class DAG {
 	    this.V = V;
 	    this.E = 0;
 	    indegree = new int[V];
+	    marked = new boolean[V];
+	    stack = new boolean[V];
 	    adj = (ArrayList<Integer>[]) new ArrayList[V];
 	    for (int v = 0; v < V; v++) {
 	        adj[v] = new ArrayList<Integer>();
@@ -82,12 +87,26 @@ public class DAG {
 	
 	
 	public boolean hasCycle() {
-		return true;
+        return hasCycle;
     }
 	
 	 public void findCycle(int v) {
-		 
-	 }
+
+	        marked[v] = true;
+	        stack[v] = true;
+
+	        for (int w : adj(v)) {
+	            if(!marked[w]) {
+	                findCycle(w);
+	            } else if (stack[w]) {
+	                hasCycle = true;
+	                return;
+	            }
+	        }
+
+	        stack[v] = false;
+	    }
+	 
 	
 	
 	
