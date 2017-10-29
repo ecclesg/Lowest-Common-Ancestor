@@ -121,13 +121,14 @@ public class DAG {
 		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
 		boolean found = false;
 		for(int i = 0; i<arr1.size(); i++){
-				for(int t = 0; t<arr2.size(); t++){				
+				for(int t = 0; t<arr2.size(); t++){		
 					if(arr1.get(i)==arr2.get(t)){
-						commonAncestors.add(i);	
+						commonAncestors.add(arr1.get(i));	
 						found = true;
 					}
 			}
 		}
+		
 		if(found)
 			return commonAncestors.get(0);
 		else

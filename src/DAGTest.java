@@ -88,7 +88,7 @@ public class DAGTest {
 	//Following tests check the LCA function for a DAG graph
 	@Test
 	public void testLCA(){
-		DAG lca = new DAG(8);
+		DAG lca = new DAG(10);
 		
 		//--------2---5----7--
 		//---0--1-------6----8
@@ -105,8 +105,10 @@ public class DAGTest {
 		lca.addEdge(7, 8);
 		
 		assertEquals("", 1, lca.findLCA(5, 4));
-		assertEquals("", 5, lca.findLCA(7, 8));
-		assertEquals("", 4, lca.findLCA(6, 4));
+		assertEquals("", 7, lca.findLCA(8, 7));
+		assertEquals("", 6, lca.findLCA(6, 8));
+
+
 	}
 	
 	
