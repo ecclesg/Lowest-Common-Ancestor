@@ -42,13 +42,25 @@ public class DAGTest {
 	@Test
 	public void testinDegree(){
 		DAG test5 = new DAG(5);
+		test5.addEdge(0, 1);
+		test5.addEdge(0, 2);
+		test5.addEdge(1, 2);
+		
 		assertEquals("", -1, test5.indegree(-3));
+		assertEquals("", 1, test5.indegree(1));
+		assertEquals("", 2, test5.indegree(2));
 	}
 	
 	@Test
 	public void testOutDegree(){
 		DAG test6 = new DAG(5);
+		test6.addEdge(0, 1);
+		test6.addEdge(0, 2);
+		test6.addEdge(1, 2);
+		
 		assertEquals("", -1, test6.outdegree(8));	
+		assertEquals("", 2, test6.outdegree(0));	
+		assertEquals("", 0, test6.outdegree(2));	
 	}
 	
 	
@@ -164,4 +176,12 @@ public class DAGTest {
 
 	}
 	
+	@Test
+	public void testLCAForEmptyDAG(){
+		DAG lca4 = new DAG(5);
+		assertEquals("", -1, lca4.findLCA(0, 2));
+		assertEquals("", -1, lca4.findLCA(0, 0));
+		assertEquals("", -1, lca4.findLCA(0, 3));
+		
+	}
 }

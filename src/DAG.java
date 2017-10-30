@@ -116,6 +116,15 @@ public class DAG {
 			//Graph is not a DAG
 			return -1;
 		}
+		if(validateVertex(v)<0||validateVertex(v)<0){
+			//Vertices are not valid
+			return -1;
+		}
+		if(E==0){
+			//Graph is empty
+			return -1;
+		}
+		
 		DAG backwards = reverse();
 		ArrayList<Integer> arr1 = backwards.BFS(v);
 		ArrayList<Integer> arr2 = backwards.BFS(w);
