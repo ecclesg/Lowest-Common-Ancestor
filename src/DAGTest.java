@@ -18,8 +18,8 @@ public class DAGTest {
 		
 		assertEquals("", 1, test.indegree(4));
 		assertEquals("", 2, test.outdegree(4));
-		assertEquals("", 5, test.E());
-		assertEquals("", 10, test.V());
+		assertEquals("Number of edges should be 5", 5, test.E());
+		assertEquals("Number of vertices should be 10", 10, test.V());
 		String ans = "[5, 6]";
 		assertEquals("",ans, test.adj(4).toString());
 	}
@@ -28,8 +28,15 @@ public class DAGTest {
 	@Test
 	public void testAddEdge(){
 		DAG test4 = new DAG(5);
+		//This edge should add
+		test4.addEdge(0, 1);
+		
+		//This should print message to console and have no effect
+		test4.addEdge(-2, -5);
+		
+		//This should not either as 9>5 
 		test4.addEdge(3, 9);
-		test4.addEdge(-2, -5);	
+		assertEquals("Number of edges should be 1", 1, test4.E());
 	}
 	
 	@Test

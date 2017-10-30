@@ -11,11 +11,6 @@ public class DAG {
 	private boolean marked[];		//Boolean List to track visited vertices
 	private boolean hasCycle;		//True if cycle in graph
     private boolean stack[];		//Order that vertices were visited
-    private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
-    private int[] distTo;      // distTo[v] = length of shortest s->v path
-
-    
-
 
 	
 	public DAG(int V)
@@ -62,7 +57,8 @@ public class DAG {
         if (v < 0 || v >= V)
         	return -1;
         else
-        	return 1;}
+        	return 1;
+        }
 
 	
 	//Returns amount of directed edges incident to vertex v
@@ -135,8 +131,10 @@ public class DAG {
 		}
 		
 		if(found)
+			//Returns first Ancestor in list(LCA)
 			return commonAncestors.get(0);
 		else
+			//No Ancestors found
 			return -1;
 	}
 	
@@ -178,6 +176,7 @@ public class DAG {
         
     }
     
+    //Reverses the Directed Acyclic Graph
     public DAG reverse() {
         DAG reverse = new DAG(V);
         for (int v = 0; v < V; v++) {
